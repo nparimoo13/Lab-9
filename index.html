@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 9</title>
+
+  <style>
+    button {
+      margin: 3px;
+    }
+
+    button:hover {
+      cursor: pointer;
+    }
+
+    #first-num,
+    #second-num {
+      width: 60px;
+    }
+
+    output {
+      border: 1px solid gray;
+      display: block;
+      height: 18px;
+      margin-top: 5px;
+      padding: 5px;
+      width: 240px;
+    }
+
+    main {
+      width: 800px;
+    }
+
+    #error-btns {
+      column-gap: 5px;
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 30px;
+      row-gap: 5px;
+    }
+
+    #error-btns>* {
+      padding: 8px 2px;
+      width: 122px;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <form>
+      <fieldset>
+        <legend>Error Calculator</legend>
+        <input name="first-num" id="first-num" />
+        <select name="operator" id="operator">
+          <option>+</option>
+          <option>-</option>
+          <option>*</option>
+          <option>/</option>
+        </select>
+        <input name="second-num" id="second-num" />
+        <button id="calculate">Calculate</button>
+        <br />
+        <output></output>
+      </fieldset>
+    </form>
+
+    <section id="error-btns">
+      <button>Console Log</button>
+      <button>Console Error</button>
+      <button>Console Count</button>
+      <button>Console Warn</button>
+      <button>Console Assert</button>
+      <button>Console Clear</button>
+      <button>Console Dir</button>
+      <button>Console dirxml</button>
+      <button>Console Group Start</button>
+      <button>Console Group End</button>
+      <button>Console Table</button>
+      <button>Start Timer</button>
+      <button>End Timer</button>
+      <button>Console Trace</button>
+      <button>Trigger a Global Error</button>
+    </section>
+  </main>
+
+  <script>
+    let form = document.querySelector('form');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      let output = document.querySelector('output');
+      let firstNum = document.querySelector('#first-num').value;
+      let secondNum = document.querySelector('#second-num').value;
+      let operator = document.querySelector('#operator').value;
+      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+    });
+
+    let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
+
+    const consoleLogButton = errorBtns[0];
+    consoleLogButton.addEventListener("click", () => {
+      console.log("Console Log Demo");
+    });
+
+    const consoleErrorButton = errorBtns[1];
+    consoleErrorButton.addEventListener("click", () => {
+      console.error("Console Error Demo");
+    });
+
+    const consoleCountButton = errorBtns[2];
+    consoleCountButton.addEventListener("click", () => {
+      console.count("Count Button");
+    });
+
+    const consoleWarnButton = errorBtns[3];
+    consoleWarnButton.addEventListener("click", () => {
+      console.warn("Console Warn Button");
+    });
+
+    const consoleAssertButton = errorBtns[4];
+    consoleAssertButton.addEventListener("click", () => {
+      num = 3;
+      errorMsg = "Console Assertion Error";
+      console.assert(num % 2 == 0, { num, errorMsg });
+    });
+
+    const consoleClearButton = errorBtns[5];
+    consoleClearButton.addEventListener("click", () => {
+      console.clear();
+    });
+
+    const consoleDirButton = errorBtns[6];
+    consoleDirButton.addEventListener("click", () => {
+      console.dir(consoleDirButton);
+    });
+
+    const consoleDirXML = errorBtns[7];
+    consoleDirXML.addEventListener("click", () => {
+      console.dirxml(consoleDirXML);
+    });
+
+    const consoleGroupStart = errorBtns[8];
+    consoleGroupStart.addEventListener("click", () => {
+      console.group();
+    });
+
+    const consoleGroupEnd = errorBtns[9];
+    consoleGroupEnd.addEventListener("click", () => {
+      console.groupEnd();
+    });
+
+    const consoleGroupTable = errorBtns[10];
+    consoleGroupTable.addEventListener("click", () => {
+      const schedule =
+    [{
+      class: "Data Structures",
+      number: 110,
+    },
+    {
+      class: "Software Engineering",
+      number: 100,
+    },
+    {
+      class: "Advanced Software",
+      number: 112,
+    }
+    ];
+    console.table(schedule);
+    });
+
+    const startTimer = errorBtns[11];
+    startTimer.addEventListener("click", () => {
+      console.time("Timer Button");
+    });
+
+    const endTimer = errorBtns[12];
+    endTimer.addEventListener("click", () => {
+      console.timeEnd("Timer Button");
+    });
+
+    const consoleTraceButton = errorBtns[13];
+    consoleTraceButton.addEventListener("click", () => {
+      function YOO() {
+        console.log("hey");
+      }
+      function WAZZAH()
+      {
+        console.log("Ya");
+      }
+      WAZZAH();
+      YOO();
+      console.trace();
+    });
+
+    
+    const consoleGlobalTrigger = errorBtns[14];
+    consoleGlobalTrigger.addEventListener("click", () =>
+    {
+      try {
+      errorRightHere;
+
+    }
+    catch(err)
+    {
+      throw err
+    }
+    });
+  </script>
+</body>
+
+</html>
