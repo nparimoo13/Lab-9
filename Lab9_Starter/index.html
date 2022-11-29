@@ -123,7 +123,8 @@
     const consoleAssertButton = errorBtns[4];
     consoleAssertButton.addEventListener("click", () => {
       num = 3;
-      console.assert(num % 3 == 0, { number, errorMsg });
+      errorMsg = "Console Assertion Error";
+      console.assert(num % 2 == 0, { num, errorMsg });
     });
 
     const consoleClearButton = errorBtns[5];
@@ -183,19 +184,30 @@
     const consoleTraceButton = errorBtns[13];
     consoleTraceButton.addEventListener("click", () => {
       function YOO() {
-        function WAZZAH()
-        {
-          console.trace();
-        }
-        YOO();
+        console.log("hey");
+      }
+      function WAZZAH()
+      {
+        console.log("Ya");
       }
       WAZZAH();
+      YOO();
+      console.trace();
     });
 
-    try {
+    
+    const consoleGlobalTrigger = errorBtns[14];
+    consoleGlobalTrigger.addEventListener("click", () =>
+    {
+      try {
       errorRightHere;
 
     }
+    catch(err)
+    {
+      throw err
+    }
+    });
   </script>
 </body>
 
